@@ -1,11 +1,11 @@
 {
-  "name": "ExamplePlugin",
+  "name": "WoolBot",
   "version": "${version}",
-  "description": "Example implementation of a plugin for Lambda.",
+  "description": "Bot that collects wool automagically for servers like 2b.",
   "url": "https://github.com/lambda-client/ExamplePlugin",
-  "authors": [ "me", "you" ],
-  "main_class": "com.lambda.ExamplePlugin",
+  "authors": [ "Jalvaviel" ],
+  "main_class": "com.lambda.WoolBot",
   "min_api_version": "3.2",
-  "mixins": [ "mixins.ExamplePlugin.json" ],
+  "mixins": [],
   "required_plugins": []
 }

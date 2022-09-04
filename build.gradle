@@ -71,7 +71,8 @@ dependencies {
 
     // Online maven dependency coming soon
     implementation files("lib/lambda-3.2-api.jar")
-
+    implementation 'org.reflections:reflections:0.9.12'
+    implementation group: 'com.jagrosh', name: 'DiscordIPC', version: '0.4'
     implementation('org.spongepowered:mixin:0.8.5') {
         exclude module: 'commons-io'
         exclude module: 'gson'
