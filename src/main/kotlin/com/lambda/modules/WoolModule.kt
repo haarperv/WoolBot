@@ -41,12 +41,9 @@ internal object WoolModule : PluginModule(
     private val jUtils = JobUtils()
     private val bUtils = com.lambda.utils.BaritoneUtils()
     private var sheepArray: MutableList<EntitySheep> = mutableListOf()
-
-    //private var sheepMap: MutableMap<Entity,Boolean> = mutableMapOf()
     private val debug by setting("Debug", false)
     private var currentSlot = -1
     private var sheepIterator = 0
-
 
     init {
         onEnable {  //Loads a list of sheep in the loaded area
@@ -66,17 +63,15 @@ internal object WoolModule : PluginModule(
             }
         }
         safeListener<TickEvent.ClientTickEvent> {
-            val currentSheep = sheepArray[sheepIterator]
+            val currentSheep = findNearestSheep()
             if (bUtils.status == EWorkerStatus.IDLE) {
-                if (!currentSheep.sheared) {
-                    if (debug) MessageSendHelper.sendChatMessage("Pathing towards $currentSheep")
-                    baritoneMove(currentSheep)
-                    bUtils.pathingGoalCheck()
-                    if (debug) MessageSendHelper.sendChatMessage("Finished pathing")
-                    useShears(sheepArray[sheepIterator])
-                    pickNearestItem()
-                    bUtils.pathingGoalCheck()
-                }
+                if (debug) MessageSendHelper.sendChatMessage("Pathing towards $currentSheep")
+                baritoneMove(currentSheep)
+                bUtils.pathingGoalCheck()
+                if (debug) MessageSendHelper.sendChatMessage("Finished pathing")
+                useShears(sheepArray[sheepIterator])
+                pickNearestItem()
+                bUtils.pathingGoalCheck()
             }
             if (sheepIterator == sheepArray.size - 1) {
                 sheepIterator = 0
@@ -120,6 +115,20 @@ internal object WoolModule : PluginModule(
 
     private fun unloadSheep() { //clears the sheepArray and the sheepMap.
         sheepArray.clear()
+    }
+
+    private fun findNearestSheep(): EntitySheep {
+        var nearestSheep = sheepArray[0]
+        var minDistance = 99999F
+        for(sheep in sheepArray){
+            if(!sheep.sheared){
+                if(mc.player.getDistance(sheep) < minDistance) {
+                    minDistance = mc.player.getDistance(sheep)
+                    nearestSheep = sheep
+                }
+            }
+        }
+        return nearestSheep
     }
 
     private fun baritoneMove(currentSheep : Entity){ //Checks the last block position of the sheep and pathfinds near it (1 block radius).

@@ -1,8 +1,8 @@
 {
   "name": "WoolBot",
-  "version": "${version}",
+  "version": "1.3",
   "description": "Bot that collects wool automagically for servers like 2b.",
-  "url": "https://github.com/lambda-client/ExamplePlugin",
+  "url": "https://github.com/Jalvaviel/WoolBot",
   "authors": [ "Jalvaviel" ],
   "main_class": "com.lambda.WoolBot",
   "min_api_version": "3.2",
