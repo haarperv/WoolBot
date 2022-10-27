@@ -1,7 +1,7 @@
 package com.lambda.modules
 import baritone.api.pathing.goals.GoalNear
 import baritone.api.pathing.goals.GoalXZ
-import com.lambda.WoolBot
+import com.lambda.JalvaPlugins
 import com.lambda.classes.worker.Job
 import com.lambda.classes.worker.utils.JobTracker
 import com.lambda.classes.worker.utils.JobUtils
@@ -29,14 +29,11 @@ import net.minecraft.util.EnumHand
 import net.minecraft.util.math.BlockPos
 import net.minecraftforge.fml.common.gameevent.TickEvent
 
-/**
- * This is a module. First set properties then settings then add listener.
- * **/
 internal object WoolModule : PluginModule(
     name = "WoolModule",
     category = Category.MISC,
     description = "Bot that collects wool automagically for servers like 2b.",
-    pluginMain = WoolBot
+    pluginMain = JalvaPlugins
 ) {
     private val jUtils = JobUtils()
     private val bUtils = com.lambda.utils.BaritoneUtils()
